@@ -8,13 +8,12 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
-import { z, ZodType } from "zod";
+import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -25,7 +24,7 @@ import Link from "next/link";
 import ROUTES from "@/constants/routes";
 
 interface AuthFormProps<T extends FieldValues> {
-  schema: ZodType<T>;
+  schema: z.ZodTypeAny;
   defaultValues: T;
   onSubmit: (data: T) => Promise<{ success: boolean }>;
   formType: "SIGN_IN" | "SIGN_UP";
@@ -42,7 +41,9 @@ const AuthForm = <T extends FieldValues>({
     defaultValues: defaultValues as DefaultValues<T>,
   });
 
-  const handelSubmit: SubmitHandler<T> = async () => {};
+  const handelSubmit: SubmitHandler<T> = async () => {
+    console.log(onSubmit);
+  };
   const buttonText = formType === "SIGN_IN" ? "Sign In" : "Sign Up";
 
   return (
