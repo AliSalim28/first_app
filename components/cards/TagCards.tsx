@@ -12,8 +12,8 @@ interface Props {
   compact?: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const TagCards = ({ _id, name, questions, showCount, compact }: Props) => {
-    
   const iconClass = getDeviconClassName(name);
   return (
     <Link href={ROUTES.TAGS(_id)} className="flex justify-between gap-2">
